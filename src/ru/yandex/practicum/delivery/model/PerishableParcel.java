@@ -1,6 +1,6 @@
-package ru.yandex.practicum.delivery;
+package ru.yandex.practicum.delivery.model;
 
-import static ru.yandex.practicum.delivery.DeliveryApp.PERISHABLE_DELIVERY_COST;
+import static ru.yandex.practicum.delivery.service.DeliveryService.PERISHABLE_DELIVERY_COST;
 
 public class PerishableParcel extends Parcel {
     private final int timeToLive;
@@ -12,8 +12,12 @@ public class PerishableParcel extends Parcel {
         isExpected = false;
     }
 
-    public boolean isExpired(int currentDay) {
-        return (getSendDay() + timeToLive) < currentDay;
+    public boolean isExpected() {
+        return isExpected;
+    }
+
+    public void isExpired(int currentDay) {
+        isExpected = (getSendDay() + timeToLive) < currentDay;
     }
 
     @Override

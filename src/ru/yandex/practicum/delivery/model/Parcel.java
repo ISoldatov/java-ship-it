@@ -1,4 +1,4 @@
-package ru.yandex.practicum.delivery;
+package ru.yandex.practicum.delivery.model;
 
 public abstract class Parcel {
 
@@ -20,19 +20,36 @@ public abstract class Parcel {
         return description;
     }
 
+    public int getWeight() {
+        return weight;
+    }
+
     public int getSendDay() {
         return sendDay;
     }
 
-    protected void packageItem() {
+    public void packageItem() {
         System.out.println("Посылка " + description + " упакована.");
     }
 
-    protected int calculateDeliveryCost() {
+    public int calculateDeliveryCost() {
         return weight * getDeliveryCost();
     }
 
-    protected void deliver() {
-        System.out.println("Посылка " + description + " доставлена по адресу " + deliveryAddress +".");
+    public void deliver() {
+        System.out.println("Посылка " + description + " доставлена по адресу " + deliveryAddress + ".");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Parcel parcel = (Parcel) o;
+        return description.equals(parcel.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return description.hashCode();
     }
 }
