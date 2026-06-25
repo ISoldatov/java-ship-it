@@ -1,8 +1,8 @@
 package ru.yandex.practicum.delivery.model;
 
-import static ru.yandex.practicum.delivery.service.DeliveryService.FRAGILE_DELIVERY_COST;
-
 public class FragileParcel extends Parcel implements Trackable {
+    public static final int FRAGILE_DELIVERY_COST = 4;
+
     public FragileParcel(String description, int weight, String deliveryAddress, int sendDay) {
         super(description, weight, deliveryAddress, sendDay);
     }

@@ -4,40 +4,36 @@ import ru.yandex.practicum.delivery.model.*;
 
 import java.util.*;
 
-public class DeliveryService {
-    public static final int STANDARD_DELIVERY_COST = 2;
-    public static final int PERISHABLE_DELIVERY_COST = 3;
-    public static final int FRAGILE_DELIVERY_COST = 4;
-    public static final int DEFAULT_BOX_WEIGHT = 25;
+import static ru.yandex.practicum.delivery.model.ParcelBox.DEFAULT_BOX_WEIGHT;
 
+public class DeliveryService {
     private final List<Parcel> allParcels = new ArrayList<>();
     private final List<Trackable> trackableParcels = new ArrayList<>();
 
-    private final ParcelBox<StandardParcel> standartParselBox = new ParcelBox<>(DEFAULT_BOX_WEIGHT);
+    private final ParcelBox<StandardParcel> standardParseBox = new ParcelBox<>(DEFAULT_BOX_WEIGHT);
     private final ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<>(DEFAULT_BOX_WEIGHT);
     private final ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<>(DEFAULT_BOX_WEIGHT);
 
     public void addParcel(ParcelType parcelType, int weight, String description, String deliveryAddress, int sendDay,
                           int timeToLive) {
+        Parcel parcel = null;
         switch (parcelType) {
             case STANDARD:
-                StandardParcel standardParcel = new StandardParcel(description, weight, deliveryAddress, sendDay);
-                allParcels.add(standardParcel);
-                standartParselBox.addParcel(standardParcel);
+                parcel = new StandardParcel(description, weight, deliveryAddress, sendDay);
+                standardParseBox.addParcel((StandardParcel) parcel);
                 break;
             case FRAGILE:
-                FragileParcel fragileParcel = new FragileParcel(description, weight, deliveryAddress, sendDay);
-                allParcels.add(fragileParcel);
-                trackableParcels.add(fragileParcel);
-                fragileParcelBox.addParcel(fragileParcel);
+                parcel = new FragileParcel(description, weight, deliveryAddress, sendDay);
+                trackableParcels.add((FragileParcel) parcel);
+                fragileParcelBox.addParcel((FragileParcel) parcel);
                 break;
             case PERISHABLE:
-                PerishableParcel perishableParcel = new PerishableParcel(description, weight, deliveryAddress, sendDay, timeToLive);
-                allParcels.add(perishableParcel);
-                perishableParcelBox.addParcel(perishableParcel);
+                parcel = new PerishableParcel(description, weight, deliveryAddress, sendDay, timeToLive);
+                perishableParcelBox.addParcel((PerishableParcel) parcel);
                 break;
             default:
         }
+        allParcels.add(parcel);
         System.out.println("Посылка " + description + " принята в службу доставки.");
     }
 
@@ -65,7 +61,7 @@ public class DeliveryService {
     public List<? extends Parcel> getAllFromParcelBox(ParcelType parcelType) {
         switch (parcelType) {
             case STANDARD:
-                return standartParselBox.getAllParcels();
+                return standardParseBox.getAllParcels();
             case FRAGILE:
                 return fragileParcelBox.getAllParcels();
             case PERISHABLE:

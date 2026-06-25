@@ -1,8 +1,8 @@
 package ru.yandex.practicum.delivery.model;
 
-import static ru.yandex.practicum.delivery.service.DeliveryService.PERISHABLE_DELIVERY_COST;
-
 public class PerishableParcel extends Parcel {
+    public static final int PERISHABLE_DELIVERY_COST = 3;
+
     private final int timeToLive;
     private boolean isExpected;
 
