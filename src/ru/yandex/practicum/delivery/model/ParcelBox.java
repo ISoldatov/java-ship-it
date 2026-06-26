@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParcelBox<T extends Parcel> {
-    public static final int DEFAULT_BOX_WEIGHT = 25;
+    private static final int DEFAULT_BOX_WEIGHT = 25;
 
     private final int maxWeight;
     private int currentWeight;
 
     private final List<T> parcelsInBox = new ArrayList<>();
+
+    public ParcelBox() {
+        this(DEFAULT_BOX_WEIGHT);
+    }
 
     public ParcelBox(int maxWeight) {
         this.maxWeight = maxWeight;

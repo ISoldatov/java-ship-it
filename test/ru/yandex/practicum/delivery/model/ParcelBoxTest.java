@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 class ParcelBoxTest {
 
-    public static final int DEFAULT_BOX_WEIGHT = 25;
-
     public static final StandardParcel STANDARD_PARCEL_1 = new StandardParcel(
             "Standard parcel #1", 15, "Delivery address #1", 1);
     public static final StandardParcel STANDARD_PARCEL_2 = new StandardParcel(
@@ -20,7 +18,7 @@ class ParcelBoxTest {
 
     @BeforeEach
     public void beforeEach() {
-        parcelBox = new ParcelBox<>(DEFAULT_BOX_WEIGHT);
+        parcelBox = new ParcelBox<>();
     }
 
     @Test

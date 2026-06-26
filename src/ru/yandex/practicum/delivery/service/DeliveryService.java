@@ -4,15 +4,13 @@ import ru.yandex.practicum.delivery.model.*;
 
 import java.util.*;
 
-import static ru.yandex.practicum.delivery.model.ParcelBox.DEFAULT_BOX_WEIGHT;
-
 public class DeliveryService {
     private final List<Parcel> allParcels = new ArrayList<>();
     private final List<Trackable> trackableParcels = new ArrayList<>();
 
-    private final ParcelBox<StandardParcel> standardParseBox = new ParcelBox<>(DEFAULT_BOX_WEIGHT);
-    private final ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<>(DEFAULT_BOX_WEIGHT);
-    private final ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<>(DEFAULT_BOX_WEIGHT);
+    private final ParcelBox<StandardParcel> standardParseBox = new ParcelBox<>();
+    private final ParcelBox<FragileParcel> fragileParcelBox = new ParcelBox<>();
+    private final ParcelBox<PerishableParcel> perishableParcelBox = new ParcelBox<>();
 
     public void addParcel(ParcelType parcelType, int weight, String description, String deliveryAddress, int sendDay,
                           int timeToLive) {

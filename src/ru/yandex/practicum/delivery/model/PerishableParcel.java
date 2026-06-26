@@ -1,7 +1,7 @@
 package ru.yandex.practicum.delivery.model;
 
 public class PerishableParcel extends Parcel {
-    public static final int PERISHABLE_DELIVERY_COST = 3;
+    private static final int PERISHABLE_DELIVERY_COST = 3;
 
     private final int timeToLive;
     private boolean isExpected;
